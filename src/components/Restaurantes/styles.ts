@@ -2,11 +2,10 @@ import { styled } from 'styled-components'
 
 export const DivCardMain = styled.div`
   max-width: 472px;
-  height: 398px;
-  width: 100%;
+  height: auto;
   position: relative;
+  padding: 8px;
 `
-
 export const DivFundoCard = styled.div`
   background-color: #ffffff;
   border-width: 0px 1px 1px 1px;

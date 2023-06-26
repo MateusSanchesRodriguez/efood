@@ -17,9 +17,11 @@ import {
 type Props = {
   img: string
   titulo: string
-  nota: string
+  nota: number
   descricao: string
   tipoRestaurante: string
+  destaque: string
+  id: number
 }
 
 const Resturantes = ({
@@ -27,27 +29,31 @@ const Resturantes = ({
   titulo,
   nota,
   descricao,
-  tipoRestaurante
-}: Props) => (
-  <DivCardMain>
-    <ImgCard src={img} alt="" />
-    <DivFundoCard>
-      <DivTitulo>
-        <Titulo>{titulo}</Titulo>
-        <DivNota>
-          <Nota>{nota}</Nota>
-          <Estrela src={estrela}></Estrela>
-        </DivNota>
-      </DivTitulo>
-      <Descricao>{descricao}</Descricao>
-      <BtnCard title="clique aqui para saber mais">
-        <Link to="/perfil" style={{ color: '#ffebd9' }}>
-          Saiba mais
-        </Link>
-      </BtnCard>
-    </DivFundoCard>
-    <TipoRestaurante>{tipoRestaurante}</TipoRestaurante>
-  </DivCardMain>
-)
+  tipoRestaurante,
+  destaque,
+  id
+}: Props) => {
+  return (
+    <DivCardMain>
+      <ImgCard src={img} alt="" />
+      <DivFundoCard>
+        <DivTitulo>
+          <Titulo>{titulo}</Titulo>
+          <DivNota>
+            <Nota>{nota}</Nota>
+            <Estrela src={estrela}></Estrela>
+          </DivNota>
+        </DivTitulo>
+        <Descricao>{descricao}</Descricao>
+        <BtnCard title="clique aqui para saber mais">
+          <Link to={`/restaurante/${id}`} style={{ color: '#ffebd9' }}>
+            Saiba mais
+          </Link>
+        </BtnCard>
+      </DivFundoCard>
+      <TipoRestaurante>{tipoRestaurante}</TipoRestaurante>
+    </DivCardMain>
+  )
+}
 
 export default Resturantes

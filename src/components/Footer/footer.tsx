@@ -1,10 +1,10 @@
-import logo from '../assets/images/logo.png'
-import redesSociais from '../assets/images/redes sociais.png'
-import { DivCenter } from '../styles'
+import logo from '../../assets/images/logo.png'
+import redesSociais from '../../assets/images/redes sociais.png'
+import { DivCenter } from '../../styles'
 import { DescRodape, ImgLogo } from './styles'
 
-const Footer = () => (
-  <>
+const Footer = () => {
+  return (
     <footer>
       <DivCenter style={{ backgroundColor: '#ffebd9', height: '298px' }}>
         <ImgLogo src={logo} alt="Logo" className="logo" />
@@ -16,7 +16,7 @@ const Footer = () => (
         </DescRodape>
       </DivCenter>
     </footer>
-  </>
-)
+  )
+}
 
 export default Footer

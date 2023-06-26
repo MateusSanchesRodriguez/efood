@@ -25,7 +25,6 @@ body{
 export const DivCenter = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
-  height: 384px;
   padding: 40px;
   display: flex;
   flex-direction: column;

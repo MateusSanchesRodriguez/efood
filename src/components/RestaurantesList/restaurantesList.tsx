@@ -1,29 +1,32 @@
 import Resturantes from '../Restaurantes/restaurantes'
 import { Template } from './styles'
 
-import Restaurantes from '../../models/Restaurantes'
+import { ListaRestaurantes } from '../../pages/Home/home'
 
 export type Props = {
-  restaurantes: Restaurantes[]
+  restaurantes: ListaRestaurantes[]
 }
 
-const ResturantesList = ({ restaurantes }: Props) => (
-  <Template>
-    {restaurantes.map((restaurantes) => (
-      <>
-        <li>
-          <Resturantes
-            key={restaurantes.id}
-            img={restaurantes.img}
-            titulo={restaurantes.titulo}
-            nota={restaurantes.nota}
-            descricao={restaurantes.descricao}
-            tipoRestaurante={restaurantes.tipoRestaurantes}
-          />
-        </li>
-      </>
-    ))}
-  </Template>
-)
+const ResturantesList = ({ restaurantes }: Props) => {
+  return (
+    <Template>
+      {restaurantes.map((restaurantes) => {
+        return (
+          <li key={restaurantes.id}>
+            <Resturantes
+              img={restaurantes.capa}
+              titulo={restaurantes.titulo}
+              nota={restaurantes.avaliacao}
+              descricao={restaurantes.descricao}
+              tipoRestaurante={restaurantes.tipo}
+              destaque={restaurantes.destacado}
+              id={restaurantes.id}
+            />
+          </li>
+        )
+      })}
+    </Template>
+  )
+}
 
 export default ResturantesList

@@ -1,87 +1,38 @@
-import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import logo from '../../assets/images/logo.png'
-import backImg from '../../assets/images/fundo.png'
-import ResturantesList from '../../components/RestaurantesList/restaurantesList'
-import primeiroRestaurante from '../../assets/images/restaurante-1.png'
-import segundoRestaurante from '../../assets/images/restaurante-2.png'
-import Footer from '../../Footer/footer'
-import { DivHeader } from './styles'
+import Footer from '../../components/Footer/footer'
 
-import Restaurantes from '../../models/Restaurantes'
+import { ListaRestaurantes } from '../../pages/Home/home'
+import Produtos from '../../components/Produtos/produtos'
+import HeaderPerfil from '../../components/HeaderPerfil/headerPerfil'
+import BannerPerfil from '../../components/BannerPerfil/bannerPerfil'
+import { useEffect, useState } from 'react'
 
-const restaurantes: Restaurantes[] = [
-  {
-    id: 1,
-    img: primeiroRestaurante,
-    titulo: 'Hioki Sushi ',
-    nota: '4.9',
-    descricao:
-      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!',
-    tipoRestaurantes: 'Japonesa'
-  },
-  {
-    id: 2,
-    img: segundoRestaurante,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tipoRestaurantes: 'Itáliano'
-  },
-  {
-    id: 3,
-    img: segundoRestaurante,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tipoRestaurantes: 'Itáliano'
-  },
-  {
-    id: 4,
-    img: segundoRestaurante,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tipoRestaurantes: 'Itáliano'
-  },
-  {
-    id: 5,
-    img: segundoRestaurante,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tipoRestaurantes: 'Itáliano'
-  },
-  {
-    id: 6,
-    img: segundoRestaurante,
-    titulo: 'La Dolce Vita Trattoria',
-    nota: '4.6',
-    descricao:
-      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
-    tipoRestaurantes: 'Itáliano'
+const Perfil = () => {
+  const { id } = useParams()
+  const [restaurante, setRestaurante] = useState<ListaRestaurantes>()
+
+  useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`).then(
+      (res) => res.json().then((res) => setRestaurante(res))
+    )
+  }, [id])
+
+  if (!restaurante) {
+    return <h3> Carregando...</h3>
   }
-]
 
-const Perfil = () => (
-  <>
+  return (
     <div className="App">
-      <header style={{ backgroundImage: `url(${backImg})` }}>
-        <DivHeader>
-          <Link to={'/'}>Restaurantes</Link>
-          <img src={logo} alt="" />
-          <span>0 produto(s) no carrinho</span>
-        </DivHeader>
-      </header>
-      <div className="container">
-        <ResturantesList restaurantes={restaurantes} />
-      </div>
+      <HeaderPerfil />
+      <BannerPerfil
+        bannerImg={restaurante.capa}
+        categoria={restaurante.tipo}
+        nome={restaurante.titulo}
+      />
+      <Produtos restaurante={restaurante} />
       <Footer />
     </div>
-  </>
-)
+  )
+}
 export default Perfil
