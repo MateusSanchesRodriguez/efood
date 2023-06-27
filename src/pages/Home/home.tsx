@@ -15,7 +15,7 @@ export type ListaRestaurantes = {
   cardapio: [
     {
       foto: string
-      preco: number
+      preco: string
       id: number
       nome: string
       descricao: string

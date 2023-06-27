@@ -47,6 +47,7 @@ export const BtnProduto = styled.button`
   color: #e66767;
   margin-top: 8px;
   align-items: center;
+  cursor: pointer;
 `
 export const Model = styled.div`
   position: fixed;
@@ -54,4 +55,77 @@ export const Model = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.active {
+    display: flex;
+  }
+
+  .container {
+    width: 960px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.83);
+  }
+`
+export const ModalContent = styled.div`
+  background-color: #e66767;
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  max-height: 344px;
+
+  .divProdutoImg {
+    display: flex;
+    gap: 24px;
+
+    img {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+    }
+  }
+
+  .btn-fechar {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+  }
+
+  .content {
+    h4 {
+      font-size: 18px;
+      color: rgb(255, 255, 255);
+      margin-bottom: 16px;
+    }
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 22px;
+      color: rgb(255, 255, 255);
+      margin-bottom: 16px;
+    }
+
+    button {
+      padding: 4px 7px;
+      border: none;
+      cursor: pointer;
+      display: block;
+      font-weight: 700;
+      font-size: 14px;
+      line-height: 16px;
+      text-align: center;
+      margin-top: 16px;
+    }
+  }
 `
