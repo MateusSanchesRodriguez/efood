@@ -35,6 +35,10 @@ const Home = () => {
     )
   }, [])
 
+  if (!listaRestaurantes) {
+    return <h3> Carregando...</h3>
+  }
+
   return (
     <div className="App">
       <Header />

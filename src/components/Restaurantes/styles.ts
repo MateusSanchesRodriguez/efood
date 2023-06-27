@@ -31,6 +31,20 @@ export const TipoRestaurante = styled.span`
   text-transform: capitalize;
 `
 
+export const TipoRestaurante2 = styled.span`
+  background-color: #e66767;
+  color: #ffebd9;
+  font-size: 12px;
+  padding: 6px 4px;
+  display: block;
+  position: absolute;
+  top: 16px;
+  margin-left: 265px;
+  text-transform: capitalize;
+  text-align: center;
+  font-weight: 700;
+`
+
 export const ImgCard = styled.img`
   width: 100%;
   height: 217px;

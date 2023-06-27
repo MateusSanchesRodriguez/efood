@@ -40,6 +40,10 @@ const Produtos = ({ restaurante }: Props) => {
     }).format(preco)
   }
 
+  if (!restaurante) {
+    return <h3> Carregando...</h3>
+  }
+
   return (
     <>
       <div className="container">
