@@ -31,14 +31,14 @@ export const TipoRestaurante = styled.span`
   text-transform: capitalize;
 `
 
-export const TipoRestaurante2 = styled.span`
+export const DestaqueRestaurante = styled.span`
   background-color: #e66767;
   color: #ffebd9;
   font-size: 12px;
   padding: 6px 4px;
   display: block;
-  position: absolute;
   top: 16px;
+  position: absolute;
   margin-left: 265px;
   text-transform: capitalize;
   text-align: center;

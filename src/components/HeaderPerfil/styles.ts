@@ -14,3 +14,11 @@ export const DivHeader = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+export const CarrinhoBotao = styled.a`
+  display: flex;
+  cursor: pointer;
+
+  img {
+    margin-left: 8px;
+  }
+`

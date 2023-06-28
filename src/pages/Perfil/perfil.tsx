@@ -7,16 +7,11 @@ import Produtos from '../../components/Produtos/produtos'
 import HeaderPerfil from '../../components/HeaderPerfil/headerPerfil'
 import BannerPerfil from '../../components/BannerPerfil/bannerPerfil'
 import { useEffect, useState } from 'react'
+import { useGetRestaurantesQuery } from '../../services/api'
 
 const Perfil = () => {
   const { id } = useParams()
-  const [restaurante, setRestaurante] = useState<ListaRestaurantes>()
-
-  useEffect(() => {
-    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`).then(
-      (res) => res.json().then((res) => setRestaurante(res))
-    )
-  }, [id])
+  const { data: restaurante } = useGetRestaurantesQuery(id!)
 
   if (!restaurante) {
     return <h3> Carregando...</h3>

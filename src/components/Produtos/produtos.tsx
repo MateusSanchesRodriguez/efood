@@ -1,6 +1,8 @@
-import fechar from '../../assets/images/fechar.png'
-import { ListaRestaurantes } from '../../pages/Home/home'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { ListaRestaurantes } from '../../pages/Home/home'
+import fechar from '../../assets/images/fechar.png'
 import {
   UlPratos,
   ImgProduto,
@@ -11,12 +13,11 @@ import {
   Model,
   ModalContent
 } from './styles'
-import { useState } from 'react'
+import { open, add } from '../../store/reducers/carrinho'
 
-export type Props = {
+type Props = {
   restaurante: ListaRestaurantes
 }
-
 const Produtos = ({ restaurante }: Props) => {
   const produtos = restaurante.cardapio
   const [modal, setModal] = useState(false)
@@ -25,6 +26,13 @@ const Produtos = ({ restaurante }: Props) => {
   const [modalDescricao, setDescricao] = useState('')
   const [modalPorcao, setPorcao] = useState('')
   const [modalPreco, setPreco] = useState('')
+
+  const dispatch = useDispatch()
+
+  const addCarrinho = () => {
+    dispatch(add(restaurante))
+    dispatch(open())
+  }
 
   const getDescricao = (descricao: string) => {
     if (descricao.length > 263) {
@@ -48,54 +56,59 @@ const Produtos = ({ restaurante }: Props) => {
     <>
       <div className="container">
         <UlPratos>
-          {produtos.map((produtos) => {
-            return (
-              <li key={produtos.id}>
-                <DivCardMain>
-                  <ImgProduto src={produtos.foto} alt="" />
-                  <TituloProduto>{produtos.nome}</TituloProduto>
-                  <DescricaoProduto>
-                    {getDescricao(produtos.descricao)}
-                  </DescricaoProduto>
-                  <BtnProduto
-                    onClick={() => {
-                      setModal(true)
-                      setFoto(produtos.foto)
-                      setTitulo(produtos.nome)
-                      setDescricao(produtos.descricao)
-                      setPorcao(produtos.porcao)
-                      setPreco(formataPreco(parseFloat(produtos.preco)))
-                    }}
-                  >
-                    Adicionar ao carrinho
-                  </BtnProduto>
-                </DivCardMain>
-              </li>
-            )
-          })}
+          {produtos.map((produto) => (
+            <li key={produto.id}>
+              <DivCardMain>
+                <ImgProduto src={produto.foto} alt={produto.nome} />
+                <TituloProduto>{produto.nome}</TituloProduto>
+                <DescricaoProduto>
+                  {getDescricao(produto.descricao)}
+                </DescricaoProduto>
+                <BtnProduto
+                  onClick={() => {
+                    setModal(true)
+                    setFoto(produto.foto)
+                    setTitulo(produto.nome)
+                    setDescricao(produto.descricao)
+                    setPorcao(produto.porcao)
+                    setPreco(formataPreco(parseFloat(produto.preco)))
+                  }}
+                >
+                  Adicionar ao carrinho
+                </BtnProduto>
+              </DivCardMain>
+            </li>
+          ))}
         </UlPratos>
       </div>
       <Model className={modal ? 'active' : ''}>
         <ModalContent className="container">
           <div className="divProdutoImg">
-            <img src={modalFoto} />
+            <img src={modalFoto} alt={modalTitulo} />
             <div className="content">
               <h4>{modalTitulo}</h4>
               <p>{modalDescricao}</p>
               <p>{modalPorcao}</p>
-              <button>Adicionar ao carrinho {modalPreco}</button>
+              <button
+                onClick={() => {
+                  setModal(false)
+                  addCarrinho()
+                }}
+              >
+                Adicionar ao carrinho {modalPreco}
+              </button>
             </div>
           </div>
           <img
             src={fechar}
             className="btn-fechar"
+            alt="fechar"
             onClick={() => setModal(false)}
           />
         </ModalContent>
-        <div className="overlay"></div>
+        <div className="overlay" onClick={() => setModal(false)}></div>
       </Model>
     </>
   )
 }
-
 export default Produtos

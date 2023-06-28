@@ -12,7 +12,7 @@ import {
   Descricao,
   BtnCard,
   ImgCard,
-  TipoRestaurante2
+  DestaqueRestaurante
 } from './styles'
 
 type Props = {
@@ -52,7 +52,11 @@ const Resturantes = ({
           </Link>
         </BtnCard>
       </DivFundoCard>
-      {destaque ? <TipoRestaurante2>Destaque da semana</TipoRestaurante2> : ''}
+      {destaque ? (
+        <DestaqueRestaurante>Destaque da semana</DestaqueRestaurante>
+      ) : (
+        ''
+      )}
       <TipoRestaurante>{tipoRestaurante}</TipoRestaurante>
     </DivCardMain>
   )
