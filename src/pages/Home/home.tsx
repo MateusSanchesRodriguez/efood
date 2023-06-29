@@ -5,6 +5,15 @@ import ResturantesList from '../../components/RestaurantesList/restaurantesList'
 import Footer from '../../components/Footer/footer'
 import { useGetListaRestauranteQuery } from '../../services/api'
 
+export interface CardapioItem {
+  foto: string
+  preco: string
+  id: number
+  nome: string
+  descricao: string
+  porcao: string
+}
+
 export type ListaRestaurantes = {
   id: number
   titulo: string
@@ -13,16 +22,7 @@ export type ListaRestaurantes = {
   avaliacao: number
   descricao: string
   capa: string
-  cardapio: [
-    {
-      foto: string
-      preco: string
-      id: number
-      nome: string
-      descricao: string
-      porcao: string
-    }
-  ]
+  cardapio: CardapioItem[]
 }
 
 const Home = () => {

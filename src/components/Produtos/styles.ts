@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const DivCardMain = styled.div`
   max-width: 320px;
@@ -6,6 +7,10 @@ export const DivCardMain = styled.div`
   position: relative;
   background-color: #e66767;
   padding: 8px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: 400px;
+  }
 `
 export const DivProdutos = styled.div`
   padding-top: 25px;
@@ -18,6 +23,19 @@ export const UlPratos = styled.ul`
   row-gap: 40px;
   margin-bottom: 120px;
   justify-items: center;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 5px;
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    column-gap: 20px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
 `
 
 export const ImgProduto = styled.img`
@@ -48,6 +66,10 @@ export const BtnProduto = styled.button`
   margin-top: 8px;
   align-items: center;
   cursor: pointer;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    width: 100%;
+  }
 `
 export const Model = styled.div`
   position: fixed;
@@ -66,6 +88,10 @@ export const Model = styled.div`
 
   .container {
     width: 960px;
+
+    @media (max-width: ${breakpoints.desktop}) {
+      max-width: 80%;
+    }
   }
 
   .overlay {
@@ -84,14 +110,26 @@ export const ModalContent = styled.div`
   padding: 32px;
   max-height: 344px;
 
+  @media (max-width: ${breakpoints.mobile}) {
+    max-height: 100%;
+  }
+
   .divProdutoImg {
     display: flex;
     gap: 24px;
+
+    @media (max-width: ${breakpoints.mobile}) {
+      flex-direction: column;
+    }
 
     img {
       width: 280px;
       height: 280px;
       object-fit: cover;
+
+      @media (max-width: ${breakpoints.mobile}) {
+        width: 100%;
+      }
     }
   }
 

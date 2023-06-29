@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { ListaRestaurantes } from '../../pages/Home/home'
+import { CardapioItem, ListaRestaurantes } from '../../pages/Home/home'
 import fechar from '../../assets/images/fechar.png'
 import {
   UlPratos,
@@ -14,10 +14,19 @@ import {
   ModalContent
 } from './styles'
 import { open, add } from '../../store/reducers/carrinho'
+import { getDescricao } from '../../components/RestaurantesList/restaurantesList'
 
 type Props = {
   restaurante: ListaRestaurantes
 }
+
+export const formataPreco = (preco: number) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(preco)
+}
+
 const Produtos = ({ restaurante }: Props) => {
   const produtos = restaurante.cardapio
   const [modal, setModal] = useState(false)
@@ -26,26 +35,19 @@ const Produtos = ({ restaurante }: Props) => {
   const [modalDescricao, setDescricao] = useState('')
   const [modalPorcao, setPorcao] = useState('')
   const [modalPreco, setPreco] = useState('')
+  const [selectedProduct, setSelectedProduct] = useState<CardapioItem>()
 
   const dispatch = useDispatch()
 
   const addCarrinho = () => {
-    dispatch(add(restaurante))
+    dispatch(add(selectedProduct!))
+    setModal(false)
     dispatch(open())
   }
 
-  const getDescricao = (descricao: string) => {
-    if (descricao.length > 263) {
-      return descricao.slice(0, 250) + '...'
-    }
-    return descricao
-  }
-
-  const formataPreco = (preco: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
+  const openModal = (product: CardapioItem) => {
+    setSelectedProduct(product)
+    setModal(true)
   }
 
   if (!restaurante) {
@@ -71,6 +73,7 @@ const Produtos = ({ restaurante }: Props) => {
                     setTitulo(produto.nome)
                     setDescricao(produto.descricao)
                     setPorcao(produto.porcao)
+                    openModal(produto)
                     setPreco(formataPreco(parseFloat(produto.preco)))
                   }}
                 >
@@ -89,12 +92,7 @@ const Produtos = ({ restaurante }: Props) => {
               <h4>{modalTitulo}</h4>
               <p>{modalDescricao}</p>
               <p>{modalPorcao}</p>
-              <button
-                onClick={() => {
-                  setModal(false)
-                  addCarrinho()
-                }}
-              >
+              <button onClick={() => addCarrinho()}>
                 Adicionar ao carrinho {modalPreco}
               </button>
             </div>
@@ -111,4 +109,5 @@ const Produtos = ({ restaurante }: Props) => {
     </>
   )
 }
+
 export default Produtos

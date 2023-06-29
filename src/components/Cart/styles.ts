@@ -18,7 +18,7 @@ export const CarrinhoContainer = styled.div`
   height: 100%;
   display: none;
   justify-content: flex-end;
-  z-index: 1;
+  z-index: 2;
 
   &.is-open {
     display: flex;

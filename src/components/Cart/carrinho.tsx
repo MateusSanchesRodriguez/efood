@@ -10,7 +10,8 @@ import {
   ValorTotal,
   CarrinhoItem
 } from './styles'
-import { close } from '../../store/reducers/carrinho'
+import { close, remove } from '../../store/reducers/carrinho'
+import { formataPreco } from '../Produtos/produtos'
 
 const Carrinho = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -20,11 +21,13 @@ const Carrinho = () => {
     dispatch(close())
   }
 
-  const formataPreco = (preco: number) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(preco)
+  const removeProduto = (id: number) => {
+    dispatch(remove(id))
+  }
+  const getTotalPrice = () => {
+    return items.reduce((acumulador, valorAtual) => {
+      return (acumulador += parseFloat(valorAtual.preco))
+    }, 0)
   }
 
   return (
@@ -34,18 +37,18 @@ const Carrinho = () => {
         <ul>
           {items.map((item) => (
             <CarrinhoItem key={item.id}>
-              <img src={item.capa} />
+              <img src={item.foto} />
               <div>
-                <Titulo>{item.titulo}</Titulo>
-                <Preco>20</Preco>
+                <Titulo>{item.nome}</Titulo>
+                <Preco>{formataPreco(parseFloat(item.preco))}</Preco>
               </div>
-              <button type="button" />
+              <button type="button" onClick={() => removeProduto(item.id)} />
             </CarrinhoItem>
           ))}
         </ul>
         <ValorTotal>
           <span>Valor Total</span>
-          <span>RS 250</span>
+          <span>{formataPreco(getTotalPrice())}</span>
         </ValorTotal>
         <Btn>
           <span>Continuar com a entrega</span>

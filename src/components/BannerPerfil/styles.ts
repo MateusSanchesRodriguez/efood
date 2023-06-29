@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const Banner = styled.div`
   height: 280px;
@@ -25,6 +26,10 @@ export const Banner = styled.div`
     span {
       font-size: 32px;
       color: #ffffff;
+    }
+
+    @media (max-width: ${breakpoints.desktop}) {
+      max-width: 80%;
     }
   }
 

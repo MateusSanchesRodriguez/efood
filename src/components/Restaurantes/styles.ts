@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const DivCardMain = styled.div`
   max-width: 472px;
@@ -43,6 +44,14 @@ export const DestaqueRestaurante = styled.span`
   text-transform: capitalize;
   text-align: center;
   font-weight: 700;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    margin-left: 160px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-left: 130px;
+  }
 `
 
 export const ImgCard = styled.img`

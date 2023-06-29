@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const Header = styled.div`
   height: 186px;
@@ -13,6 +14,11 @@ export const DivHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `
 export const CarrinhoBotao = styled.a`
   display: flex;

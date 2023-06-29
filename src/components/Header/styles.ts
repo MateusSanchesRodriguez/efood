@@ -1,4 +1,5 @@
 import { styled } from 'styled-components'
+import { breakpoints } from '../../styles'
 
 export const TitleHero = styled.p`
   font-size: 36px;
@@ -9,9 +10,21 @@ export const TitleHero = styled.p`
   height: 84px;
   width: 100%;
   text-align: center;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 16px;
+  }
 `
 export const ImgLogo = styled.img`
   width: 125px;
   height: 57px;
   margin-bottom: 138px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    margin-bottom: 100px;
+  }
+
+  @media (max-width: '425px') {
+    margin-bottom: 100px;
+  }
 `
