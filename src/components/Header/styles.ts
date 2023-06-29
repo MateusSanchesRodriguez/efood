@@ -12,7 +12,7 @@ export const TitleHero = styled.p`
   text-align: center;
 
   @media (max-width: ${breakpoints.tablet}) {
-    margin-bottom: 16px;
+    margin-bottom: 25px;
   }
 `
 export const ImgLogo = styled.img`
@@ -24,7 +24,7 @@ export const ImgLogo = styled.img`
     margin-bottom: 100px;
   }
 
-  @media (max-width: '425px') {
-    margin-bottom: 100px;
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-bottom: 90px;
   }
 `
