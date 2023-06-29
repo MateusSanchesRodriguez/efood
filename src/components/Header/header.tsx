@@ -5,7 +5,7 @@ import { DivCenter } from '../../styles'
 
 const Header = () => (
   <header>
-    <DivCenter style={{ backgroundImage: `url(${backImg})`, height: '384px' }}>
+    <DivCenter style={{ backgroundImage: `url(${backImg})`, height: '350px' }}>
       <ImgLogo src={logo} alt="Logo" className="logo" />
       <TitleHero>
         Viva experiências gastronômicasno conforto da sua casa{' '}

@@ -10,10 +10,6 @@ export const TitleHero = styled.p`
   height: 84px;
   width: 100%;
   text-align: center;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    margin-bottom: 25px;
-  }
 `
 export const ImgLogo = styled.img`
   width: 125px;
