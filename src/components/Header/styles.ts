@@ -25,6 +25,6 @@ export const ImgLogo = styled.img`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    margin-bottom: 90px;
+    margin-bottom: 89px;
   }
 `
