@@ -8,7 +8,7 @@ const Header = () => (
     <DivCenter style={{ backgroundImage: `url(${backImg})`, height: '350px' }}>
       <ImgLogo src={logo} alt="Logo" className="logo" />
       <TitleHero>
-        Viva experiências gastronômicasno conforto da sua casa{' '}
+        Viva experiências gastronômicas no conforto da sua casa{' '}
       </TitleHero>
     </DivCenter>
   </header>

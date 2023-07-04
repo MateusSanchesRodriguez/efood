@@ -33,7 +33,7 @@ export const Banner = styled.div`
     }
   }
 
-  .Titulo {
+  .Title {
     z-index: 1;
     position: relative;
     padding-top: 157px;

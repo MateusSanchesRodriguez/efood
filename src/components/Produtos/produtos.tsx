@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { CardapioItem, ListaRestaurantes } from '../../pages/Home/home'
 import fechar from '../../assets/images/fechar.png'
+
+import { open, add } from '../../store/reducers/carrinho'
+import { getDescricao } from '../../components/RestaurantesList/restaurantesList'
+
 import {
   UlPratos,
   ImgProduto,
@@ -13,18 +16,11 @@ import {
   Model,
   ModalContent
 } from './styles'
-import { open, add } from '../../store/reducers/carrinho'
-import { getDescricao } from '../../components/RestaurantesList/restaurantesList'
+import { convertToBrl } from '../../utils/utils'
+import Loader from '../Loader/loader'
 
 type Props = {
   restaurante: ListaRestaurantes
-}
-
-export const formataPreco = (preco: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(preco)
 }
 
 const Produtos = ({ restaurante }: Props) => {
@@ -51,7 +47,7 @@ const Produtos = ({ restaurante }: Props) => {
   }
 
   if (!restaurante) {
-    return <h3> Carregando...</h3>
+    return <Loader />
   }
 
   return (
@@ -74,7 +70,7 @@ const Produtos = ({ restaurante }: Props) => {
                     setDescricao(produto.descricao)
                     setPorcao(produto.porcao)
                     openModal(produto)
-                    setPreco(formataPreco(parseFloat(produto.preco)))
+                    setPreco(convertToBrl(parseFloat(produto.preco)))
                   }}
                 >
                   Adicionar ao carrinho

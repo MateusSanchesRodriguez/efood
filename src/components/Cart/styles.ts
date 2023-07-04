@@ -24,13 +24,7 @@ export const CarrinhoContainer = styled.div`
     display: flex;
   }
 `
-export const Sidebar = styled.aside`
-  background-color: #e66767;
-  z-index: 1;
-  padding: 32px 8px 0 8px;
-  max-width: 344px;
-  width: 100%;
-`
+
 export const Titulo = styled.h3`
   color: #e66767;
   text-align: center;
@@ -50,7 +44,6 @@ export const ValorTotal = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
-  margin-bottom: 16px;
 
   span {
     color: #ffebd9;
@@ -60,11 +53,12 @@ export const ValorTotal = styled.div`
   }
 `
 export const Btn = styled.button`
-  width: 344px;
+  width: 100%;
   height: 24px;
   background-color: #ffebd9;
   border: none;
   cursor: pointer;
+  margin-top: 24px;
 
   span {
     color: #e66767;

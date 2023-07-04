@@ -1,11 +1,12 @@
 import Resturantes from '../Restaurantes/restaurantes'
 import { Template } from './styles'
 
-import { ListaRestaurantes } from '../../pages/Home/home'
 import { useEffect, useState } from 'react'
+import Loader from '../Loader/loader'
 
 export type Props = {
-  restaurantes: ListaRestaurantes[]
+  restaurantes?: ListaRestaurantes[]
+  isLoading: boolean
 }
 
 export const getDescricao = (descricao: string) => {
@@ -15,7 +16,7 @@ export const getDescricao = (descricao: string) => {
   return descricao
 }
 
-const ResturantesList = ({ restaurantes }: Props) => {
+const ResturantesList = ({ restaurantes, isLoading }: Props) => {
   const [larguraTela, setLarguraTela] = useState(window.innerWidth)
 
   useEffect(() => {
@@ -31,28 +32,33 @@ const ResturantesList = ({ restaurantes }: Props) => {
     }
   }, [])
 
+  if (isLoading) {
+    return <Loader />
+  }
+
   return (
     <Template>
-      {restaurantes.map((restaurantes) => {
-        const descricao =
-          larguraTela <= 1024
-            ? getDescricao(restaurantes.descricao)
-            : restaurantes.descricao
+      {restaurantes &&
+        restaurantes.map((restaurantes) => {
+          const descricao =
+            larguraTela <= 1024
+              ? getDescricao(restaurantes.descricao)
+              : restaurantes.descricao
 
-        return (
-          <li key={restaurantes.id}>
-            <Resturantes
-              img={restaurantes.capa}
-              titulo={restaurantes.titulo}
-              nota={restaurantes.avaliacao}
-              descricao={descricao}
-              tipoRestaurante={restaurantes.tipo}
-              destaque={restaurantes.destacado}
-              id={restaurantes.id}
-            />
-          </li>
-        )
-      })}
+          return (
+            <li key={restaurantes.id}>
+              <Resturantes
+                img={restaurantes.capa}
+                titulo={restaurantes.titulo}
+                nota={restaurantes.avaliacao}
+                descricao={descricao}
+                tipoRestaurante={restaurantes.tipo}
+                destaque={restaurantes.destacado}
+                id={restaurantes.id}
+              />
+            </li>
+          )
+        })}
     </Template>
   )
 }
