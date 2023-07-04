@@ -78,18 +78,17 @@ const Carrinho = () => {
 
   const form = useFormik({
     initialValues: {
-      fullName: 'wuyefbwejhfb',
-      address: 'wuyefbwejhfb',
-      city: 'wuyefbwejhfb',
-      CEP: '12356-425',
-      number: '123',
+      fullName: '',
+      address: '',
+      city: '',
+      CEP: '',
+      number: '',
       reference: '',
-      cardName: 'wgbufyjhwgbef',
-      cardNumber: '5132 6541 2356 3125',
-      cvv: '123',
-      expiresMonth: '01',
-      expiresYear: '23',
-      items: items
+      cardName: '',
+      cardNumber: '',
+      cvv: '',
+      expiresMonth: '',
+      expiresYear: ''
     },
     validationSchema: Yup.object({
       fullName: Yup.string()
